@@ -1,6 +1,7 @@
 package com.shahbaz.quizapplication.di
 
 import com.shahbaz.quizapplication.repo.CategoryRepo
+import com.shahbaz.quizapplication.repo.QuestionRepo
 import com.shahbaz.quizapplication.retrofit.QuizApiService
 import com.shahbaz.quizapplication.util.Constant.QUIZ_BASE_URL
 import dagger.Module
@@ -54,5 +55,11 @@ class QuizModule {
     @Singleton
     fun provideCategoryRepo(apiService: QuizApiService): CategoryRepo {
         return CategoryRepo(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideQuestionRepo(apiService: QuizApiService): QuestionRepo {
+        return QuestionRepo(apiService)
     }
 }

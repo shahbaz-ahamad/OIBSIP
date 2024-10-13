@@ -1,7 +1,7 @@
 package com.shahbaz.quizapplication.repo
 
-import com.shahbaz.quizapplication.datamodel.CategoryList
-import com.shahbaz.quizapplication.datamodel.CategoryListItem
+import com.shahbaz.quizapplication.datamodel.category.CategoryList
+import com.shahbaz.quizapplication.datamodel.category.CategoryListItem
 import com.shahbaz.quizapplication.retrofit.QuizApiService
 import com.shahbaz.quizapplication.util.Resources
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -10,12 +10,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.shahbaz.quizapplication.util.Resources
 import com.shahbaz.quizapplication.viewmodel.CatgegoryViewmodel
+import com.shahbaz.quizapplication.viewmodel.QuestionViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val categoryViewmodel by viewModels<CatgegoryViewmodel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,21 +26,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        observeCatgegoryData()
+
     }
 
-    private fun observeCatgegoryData() {
-        lifecycleScope.launch {
-            categoryViewmodel.categoryStatus.collect {
-                when (it) {
-                    is Resources.Loading -> {}
-                    is Resources.Success -> {
-                        Log.d("TAG", "observeCatgegoryData: ${it.data}")
-                    }
-                    is Resources.Error -> {}
-                    else -> Unit
-                }
-            }
-        }
-    }
 }

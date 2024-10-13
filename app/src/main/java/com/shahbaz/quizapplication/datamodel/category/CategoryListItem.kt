@@ -1,4 +1,4 @@
-package com.shahbaz.quizapplication.datamodel
+package com.shahbaz.quizapplication.datamodel.category
 
 data class CategoryListItem(
     val id: Int,
