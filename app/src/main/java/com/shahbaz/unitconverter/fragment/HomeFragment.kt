@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binidng.recyclerview.apply {
+        binidng.recyclerview?.apply {
             adapter = converterItemAdapter
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(requireContext(), 3)

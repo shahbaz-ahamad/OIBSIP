@@ -10,6 +10,8 @@ import com.shahbaz.unitconverter.R
 import com.shahbaz.unitconverter.databinding.FragmentWeigthBinding
 import com.shahbaz.unitconverter.util.CalculatorUtils
 import com.shahbaz.unitconverter.util.Constant
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class WeigthFragment : Fragment() {
 
@@ -94,7 +96,8 @@ class WeigthFragment : Fragment() {
             val outputUnit = selectedOutputUnit
             if (inputUnit != null && outputUnit != null) {
                 val result = convertWeight(inputValue, inputUnit, outputUnit)
-                binding.outputValue.text = result.toString()
+                val roundOffedResult = BigDecimal(result!!).setScale(5, RoundingMode.HALF_UP).toDouble()
+                binding.outputValue.text = roundOffedResult.toString()
             }
         }
     }
@@ -120,8 +123,9 @@ class WeigthFragment : Fragment() {
         // Convert input value to kilograms (kg)
         val inputInKilograms = inputValue * (conversionTable[inputUnit] ?: return null)
 
+        val result = inputInKilograms / conversionTable[outputUnit]!!
         // Convert from kilograms (kg) to the target output unit
-        return inputInKilograms / (conversionTable[outputUnit] ?: return null)
+        return String.format("%.3f", result).toDouble()
     }
 
 }
