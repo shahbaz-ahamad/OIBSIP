@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/areaFragment"
+        android:name="com.shahbaz.unitconverter.fragment.AreaFragment"
+        android:label="fragment_area"
+        tools:layout="@layout/fragment_area" />
+    <fragment
+        android:id="@+id/lengthFragment"
+        android:name="com.shahbaz.unitconverter.fragment.LengthFragment"
+        android:label="fragment_length"
+        tools:layout="@layout/fragment_length" />
+    <fragment
+        android:id="@+id/powerFragment"
+        android:name="com.shahbaz.unitconverter.fragment.PowerFragment"
+        android:label="fragment_power"
+        tools:layout="@layout/fragment_power" />
+    <fragment
+        android:id="@+id/pressureFragment"
+        android:name="com.shahbaz.unitconverter.fragment.PressureFragment"
+        android:label="fragment_pressure"
+        tools:layout="@layout/fragment_pressure" />
+    <fragment
+        android:id="@+id/speedFragment"
+        android:name="com.shahbaz.unitconverter.fragment.SpeedFragment"
+        android:label="fragment_speed"
+        tools:layout="@layout/fragment_speed" />
+    <fragment
+        android:id="@+id/temperatureFragment"
+        android:name="com.shahbaz.unitconverter.fragment.TemperatureFragment"
+        android:label="fragment_temperature"
+        tools:layout="@layout/fragment_temperature" />
+    <fragment
+        android:id="@+id/volumeFragment"
+        android:name="com.shahbaz.unitconverter.fragment.VolumeFragment"
+        android:label="fragment_volume"
+        tools:layout="@layout/fragment_volume" />
+    <fragment
+        android:id="@+id/weigthFragment"
+        android:name="com.shahbaz.unitconverter.fragment.WeigthFragment"
+        android:label="fragment_weigth"
+        tools:layout="@layout/fragment_weigth" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.shahbaz.unitconverter.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_areaFragment"
+            app:destination="@id/areaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_lengthFragment"
+            app:destination="@id/lengthFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_powerFragment"
+            app:destination="@id/powerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_pressureFragment"
+            app:destination="@id/pressureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_speedFragment"
+            app:destination="@id/speedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_volumeFragment"
+            app:destination="@id/volumeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_pressureFragment2"
+            app:destination="@id/pressureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_temperatureFragment"
+            app:destination="@id/temperatureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_weigthFragment"
+            app:destination="@id/weigthFragment" />
+
+    </fragment>
+</navigation>
