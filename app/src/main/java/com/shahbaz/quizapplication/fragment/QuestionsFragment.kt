@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shahbaz.quizapplication.adapter.OptionsAdapter
@@ -32,6 +33,9 @@ class QuestionsFragment : Fragment() {
     private var isMultipleAnswer: Boolean = false
     private var correctAnswerList = listOf<CorrectAnswers>()
     private var userAnswers = mutableMapOf<Int, List<String>>()
+    var correctCount = 0
+    var incorrectCount = 0
+    var unattemptedCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +62,7 @@ class QuestionsFragment : Fragment() {
             if (currentQuestionIndex < questionList.size - 1) {
                 currentQuestionIndex++
                 updateUIWithCurrentQuestion()
-            }else{
+            } else {
                 evaluateAnswers()
             }
         }
@@ -106,7 +110,6 @@ class QuestionsFragment : Fragment() {
         val currentQuestion = questionList[currentQuestionIndex]
         isMultipleAnswer = currentQuestion.multiple_correct_answers == "true"
         correctAnswerList = listOf(currentQuestion.correct_answers)
-        Log.d("CorrectanswerList",correctAnswerList.toString())
         val correctAnswers = mutableMapOf<String, String>()
         correctAnswers["answer_a"] = currentQuestion.correct_answers.answer_a_correct
         correctAnswers["answer_b"] = currentQuestion.correct_answers.answer_b_correct
@@ -121,19 +124,17 @@ class QuestionsFragment : Fragment() {
                     currentQuestion.answers as Answers,
                     isMultipleAnswer,
                     correctAnswers = correctAnswers,
-                    onAnswerSelected = {selectedAnswers ->
+                    onAnswerSelected = { selectedAnswers ->
                         userAnswers[currentQuestion.id] = selectedAnswers
                     }
-                  )
+                )
             optionsRecyclerView.adapter = adapter
             optionsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
     private fun evaluateAnswers() {
-        var correctCount = 0
-        var incorrectCount = 0
-        var unattemptedCount = 0
+
 
         // Iterate through all questions to evaluate answers
         for (question in questionList) {
@@ -147,7 +148,8 @@ class QuestionsFragment : Fragment() {
             if (question.correct_answers.answer_e_correct == "true") correctAnswers.add("answer_e")
             if (question.correct_answers.answer_f_correct == "true") correctAnswers.add("answer_f")
 
-            val userSelectedAnswers = userAnswers[question.id]?.toSet() ?: emptySet() // User's selected answers
+            val userSelectedAnswers =
+                userAnswers[question.id]?.toSet() ?: emptySet() // User's selected answers
 
             if (userSelectedAnswers.isEmpty()) {
                 unattemptedCount++
@@ -157,7 +159,10 @@ class QuestionsFragment : Fragment() {
                 Log.d("Correct", "Question ${question.id}: Correct!")
             } else {
                 incorrectCount++
-                Log.d("Wrong", "Question ${question.id}: Wrong answers selected. User: $userSelectedAnswers, Correct: $correctAnswers")
+                Log.d(
+                    "Wrong",
+                    "Question ${question.id}: Wrong answers selected. User: $userSelectedAnswers, Correct: $correctAnswers"
+                )
             }
         }
 
@@ -175,6 +180,14 @@ class QuestionsFragment : Fragment() {
         // Display results in a Toast message or Log
         Toast.makeText(requireContext(), resultMessage, Toast.LENGTH_LONG).show()
         Log.d("QuizResults", resultMessage)
+
+        val action = QuestionsFragmentDirections.actionQuestionsFragmentToResultFragment(
+            correctCount.toString(),
+            incorrectCount.toString(),
+            unattemptedCount.toString(),
+            totalQuestions.toString()
+        )
+        findNavController().navigate(action)
     }
 
 

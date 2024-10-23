@@ -22,5 +22,26 @@
         <argument
             android:name="category"
             app:argType="string" />
+        <action
+            android:id="@+id/action_questionsFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.shahbaz.quizapplication.fragment.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="correctAnswerCount"
+            app:argType="string" />
+        <argument
+            android:name="inCorrectAnswerCount"
+            app:argType="string" />
+        <argument
+            android:name="unAttempetedCount"
+            app:argType="string" />
+        <argument
+            android:name="totalQuestion"
+            app:argType="string" />
     </fragment>
 </navigation>

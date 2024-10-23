@@ -6,17 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".fragment.QuestionsFragment">
 
-    <TextView
-        android:id="@+id/question"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/questionCardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:text=""
-        android:textSize="20sp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text=""
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/options"
@@ -25,12 +38,13 @@
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question">
+        app:layout_constraintTop_toBottomOf="@id/questionCardview">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/optionsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="15dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
