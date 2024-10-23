@@ -33,9 +33,11 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/options"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonSection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/questionCardview">
@@ -49,8 +51,10 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/buttonSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,15 +66,24 @@
             android:id="@+id/previousQuestion"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginEnd="15dp"
             android:layout_weight="1"
-            android:text="Prevoius" />
+            android:background="@drawable/button_design"
+            android:text="Prevoius"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/nextQuestions"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:text="Next" />
+            android:background="@drawable/button_design"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
